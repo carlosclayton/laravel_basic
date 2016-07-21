@@ -9,5 +9,6 @@
     <br />
     <br />
     <br />
-    <p>Conteudo da pagina principal do  usuario: {{ $nome }}</p>
+    <h1>Pagina do Usuario</h1>
+    <p>Ola usuario ID: {{ $id }}</p>
 @endsection
