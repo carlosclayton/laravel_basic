@@ -17,6 +17,29 @@ class UserController extends Controller
 
     public function show($id){
         return view('user.show', compact('id'));
-
     }
+
+
+    public function create(){
+        return view('user.create');
+    }
+
+    public function store(Request $request){
+        //Retornar todos os campos do form
+        //var_dump($request->all());
+
+        // Retornar campos especificos
+        //var_dump( $request->only(['name', 'email']));
+
+        // Retornar um campo
+        //echo $request->input('name');
+
+        $this->validate($request, [
+            'name' => 'required|max:255',
+            'email' => 'required|emai',
+            'senha' => 'required|confirmed|min:4'
+
+        ]);
+    }
+
 }

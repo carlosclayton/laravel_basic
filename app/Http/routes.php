@@ -17,6 +17,8 @@
 Route::group(['prefix' => 'user'], function(){
 
     Route::get('/', ['as' => 'index', 'uses' => 'UserController@index']);
+    Route::get('create', ['as' => 'create', 'uses' => 'UserController@create']);
+    Route::post('store', ['as' => 'add', 'uses' => 'UserController@store']);
     Route::get('{id}', ['as' => 'show', 'uses' => 'UserController@show']);
 
 });

@@ -12,3 +12,4 @@
     <h1>Pagina do Usuario</h1>
     <p>Ola usuario ID: {{ $id }}</p>
 @endsection
+
