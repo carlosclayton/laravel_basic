@@ -2,16 +2,20 @@
 
 namespace Basic;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Post extends Model
 {
 
+    use SoftDeletes;
     // Conversoes do laravel
     // protected $table = "posts";
     // protected $primaryKey = "id";
     // public $timestamps = false;
-    protected $dates = ['created_at', 'update_at', 'published_at'];
+    protected $dates = ['created_at', 'update_at', 'published_at', 'deleted_at'];
+
 
     protected $fillable = [
         'title', 'body', 'published_at'
@@ -29,6 +33,10 @@ class Post extends Model
 
     public function getTitleAttribute($value){
         return ucfirst($value);
+    }
+
+    public function scopeOfType($query, $type){
+        return $query->where("type", $type);
     }
 
 }
