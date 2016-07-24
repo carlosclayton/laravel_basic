@@ -11,4 +11,9 @@ class Image extends Model
     public function likes(){
         return $this->morphMany(Like::class, 'likeable');
     }
+
+    public function tags(){
+        return $this->morphToMany(Tag::class, 'taggable');
+    }
+
 }

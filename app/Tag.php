@@ -10,6 +10,15 @@ class Tag extends Model
     public $timestamps = false;
 
     public function posts(){
-        return $this->belongsToMany(Posts::class);
+        return $this->belongsToMany(Post::class);
     }
+
+    public function texts(){
+        return $this->morphedByMany(Text::class, 'taggable');
+    }
+
+    public function images(){
+        return $this->morphedByMany(Image::class, 'taggable');
+    }
+
 }
