@@ -12,7 +12,12 @@
 */
 
 
+Route::get('/', function(){
+    return view('welcome');
+});
 
+Route::auth();
+Route::get('/home', 'HomeController@index');
 
 Route::group(['prefix' => 'user'], function(){
 
@@ -21,4 +26,12 @@ Route::group(['prefix' => 'user'], function(){
     Route::post('store', ['as' => 'add', 'uses' => 'UserController@store']);
     Route::get('{id}', ['as' => 'show', 'uses' => 'UserController@show']);
 
+});
+
+
+Route::group(['middleware' => ['web']], function(){
+    Route::group(['prefix' => 'auth/github'], function(){
+        Route::get('/', 'GitHubController@redirect');
+        Route::get('callback', 'GitHubController@handle');
+    });
 });
