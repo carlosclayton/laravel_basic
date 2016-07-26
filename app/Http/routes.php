@@ -16,8 +16,8 @@ Route::get('/', function(){
     return view('welcome');
 });
 
-Route::auth();
-Route::get('/home', 'HomeController@index');
+//Route::auth();
+//Route::get('/home', 'HomeController@index');
 
 Route::group(['prefix' => 'user'], function(){
 
@@ -30,8 +30,26 @@ Route::group(['prefix' => 'user'], function(){
 
 
 Route::group(['middleware' => ['web']], function(){
+
+
+
+    /*
     Route::group(['prefix' => 'auth/github'], function(){
         Route::get('/', 'GitHubController@redirect');
         Route::get('callback', 'GitHubController@handle');
+    });
+
+    Route::group(['prefix' => 'posts'], function(){
+        Route::get('/', 'PostController@index');
+    });
+    */
+
+});
+
+Route::group(['middleware' => ['api', 'auth:api']], function() {
+    Route::get('dashboard', function(){
+        //var_dump(Auth::guard('api')->user()->email);
+
+        return 'Conectado via token.';
     });
 });
