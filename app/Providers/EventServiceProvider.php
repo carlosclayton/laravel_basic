@@ -13,8 +13,8 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
-        'Basic\Events\SomeEvent' => [
-            'Basic\Listeners\EventListener',
+        'Basic\Events\UserCreateEvent' => [
+            'Basic\Listeners\SendConfirmationEmailListener',
         ],
     ];
 
@@ -28,6 +28,9 @@ class EventServiceProvider extends ServiceProvider
     {
         parent::boot($events);
 
-        //
+        $events->listen('user.created', function(){
+           var_dump('Evento criado com sucesso');
+            return "true";
+        });
     }
 }
