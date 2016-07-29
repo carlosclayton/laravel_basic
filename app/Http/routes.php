@@ -31,7 +31,9 @@ Route::group(['prefix' => 'user'], function(){
 
 Route::group(['middleware' => ['web']], function(){
 
-
+    Route::get('messages', function(){
+       return view('messages');
+    });
 
     /*
     Route::group(['prefix' => 'auth/github'], function(){
